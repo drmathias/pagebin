@@ -23,7 +23,7 @@ const editor = new Quill('#editor', {
     },
     placeholder: 'Start writing here...',
     readOnly: false,
-    theme: 'bubble'
+    theme: 'snow'
 });
 
 // default content
@@ -63,26 +63,35 @@ const templatePage = `<!DOCTYPE html>
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="//cdn.quilljs.com/1.0.0/quill.bubble.css">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
   <style type="text/css">
     body {
       margin: 0;
     }
 
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     #editor {
-      margin: 1rem auto;
-      width: 100%;
       max-width: 36rem;
-      height: fit-content;
+      margin: 0 auto;
+      flex: 1;
+      border: 0;
     }
   </style>
 </head>
 
 <body>
-  <div id="editor" class="ql-container ql-bubble">
-    <div class="ql-editor">
+    <div class="container">
+        <div id="editor" class="ql-container ql-snow">
+            <div class="ql-editor">
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 
 </html>`;
