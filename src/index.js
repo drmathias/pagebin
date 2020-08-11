@@ -27,7 +27,7 @@ const editor = new Quill('#editor', {
 });
 
 // default content
-editor.root.innerHTML = "<h1>The Sky is the Limit</h1><p><br></p><p><img src=\"https://siasky.net/MABR5PZITLGyEOJnLxEKtHpsHssZJEtylIgxtlSfzb_snw\"></p><p><br></p><p>Create beautiful documents and share them with the world. It's simple and it's free!</p><p><br></p><ol><li>Edit this page 📝</li><li>Select '<em>Publish</em>' 👉</li><li>Share the link! 📢</li></ol><p><br></p>"
+editor.root.innerHTML = "<h1>The Sky is the Limit</h1><p><br></p><p><img src=\"https://siasky.net/MABR5PZITLGyEOJnLxEKtHpsHssZJEtylIgxtlSfzb_snw\"></p><p><br></p><p>Create beautiful, shareable web pages in minutes. It's simple and it's free!</p><p><br></p><ol><li>Edit this page 📝</li><li>Select '<em>Publish</em>' 👉</li><li>Share the link! 📢</li></ol><p><br></p>"
 
 editor.getModule('toolbar').addHandler('image', () => {
     selectLocalImage();
@@ -78,6 +78,7 @@ const templatePage = `<!DOCTYPE html>
 
     #editor {
       max-width: 36rem;
+      width: 100%;
       margin: 0 auto;
       flex: 1;
       border: 0;
