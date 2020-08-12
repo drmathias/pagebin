@@ -1,6 +1,6 @@
 import { SkynetClient } from "skynet-js";
-import Notifier from "./notifier.js"
-import Editor from "./editor.js";
+import Notifier from "./notifier"
+import Editor from "./editor";
 
 const notifier = new Notifier();
 
@@ -8,11 +8,11 @@ const skynet = new SkynetClient("https://siasky.net");
 
 const editor = new Editor(notifier);
 editor.OnUploadFile(async file => {
-    return skynet.upload(file)
-        .then(response => {
-            console.debug(`Uploaded image at ${response.skylink}`)
-            return `https://siasky.net/${response.skylink}`;
-        });
+  return skynet.upload(file)
+    .then(response => {
+      console.debug(`Uploaded image at ${response.skylink}`)
+      return `https://siasky.net/${response.skylink}`;
+    });
 });
 
 const templatePage = `<!DOCTYPE html>
@@ -57,23 +57,23 @@ const templatePage = `<!DOCTYPE html>
 let uploading = false;
 
 async function uploadDocument() {
-    uploading = true;
+  uploading = true;
 
-    let template = new DOMParser().parseFromString(templatePage, "text/html");
-    template.getElementById("editor").firstElementChild.innerHTML = editor.GetContentAsHtml();
+  let template = new DOMParser().parseFromString(templatePage, "text/html");
+  template.getElementById("editor").firstElementChild.innerHTML = editor.GetContentAsHtml();
 
-    const file = new File([template.documentElement.outerHTML], "fileName", { type: "text/html" });
+  const file = new File([template.documentElement.outerHTML], "fileName", { type: "text/html" });
 
-    const response = await skynet.upload(file)
-    console.debug(response.skylink);
-    window.location.href = `https://siasky.net/${response.skylink}`;
+  const response = await skynet.upload(file)
+  console.debug(response.skylink);
+  window.location.href = `https://siasky.net/${response.skylink}`;
 }
 
 document.getElementById("publish").onclick = async () => {
-    if (!uploading) {
-        await notifier.async(
-            uploadDocument().then(() => uploading = false),
-            "Redirecting you to your pagebin",
-            "Uploading your document");
-    }
+  if (!uploading) {
+    await notifier.async(
+      uploadDocument().then(() => uploading = false),
+      "Redirecting you to your pagebin",
+      "Uploading your document");
+  }
 };

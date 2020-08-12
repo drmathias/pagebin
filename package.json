@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "start": "webpack-dev-server --config webpack.config.dev.js --open",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "author": "",
   "dependencies": {
@@ -20,6 +21,8 @@
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1"
   }
 }
