@@ -24,6 +24,10 @@ module.exports = merge(config, {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             },
+            {
+                test: /\.styl$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"]
+            }
         ]
     }
 });
