@@ -1,6 +1,6 @@
 // Container
 $awn-container-z-index: 99998 !default;
-$awn-container-padding: 1rem !default;
+$awn-container-padding: 2rem !default;
 
 // Colors
 $awn-primary-color: hsl(0, 0, 50%) !default;
@@ -26,13 +26,13 @@ $awn-warning-border-color: hsl(32, 100%, 75%) !default;
 // Notifications
 $awn-toast-width: 320px !default;
 $awn-toast-padding: 16px !default;
-$awn-toast-margin: 16px !default;
-$awn-toast-border-width: 2px !default;
+$awn-toast-margin: 0px !default;
+$awn-toast-border-width: 0px !default;
 $awn-toast-border-style: solid !default;
 $awn-toast-border-color: $awn-primary-border-color !default;
-$awn-toast-border-radius: 6px !default;
+$awn-toast-border-radius: 10px !default;
 $awn-border: $awn-toast-border-width $awn-toast-border-style $awn-toast-border-color !default;
-$awn-progress-bar-height: 6px !default;
+$awn-progress-bar-height: 2px !default;
 $awn-toast-font-size: 14px !default;
 $awn-toast-title-font-size: 18px !default;
 $awn-toast-icon-size: 44px !default;
