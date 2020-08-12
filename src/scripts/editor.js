@@ -3,13 +3,18 @@ import Quill from "quill";
 export default class Editor {
     constructor(notifier) {
         this.notifier = notifier;
+
         this.quill = new Quill('#editor', {
             debug: 'info',
             modules: {
                 toolbar: [
                     [{ header: [1, 2, false] }],
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'link', 'blockquote']
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                    ['blockquote', 'code-block'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }, { 'align': [] }],
+                    ['image', 'link']
                 ]
             },
             readOnly: false,
