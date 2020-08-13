@@ -67,8 +67,9 @@ async function uploadDocument() {
 
   let template = new DOMParser().parseFromString(templatePage, "text/html");
   template.getElementById("editor").firstElementChild.innerHTML = editor.GetContentAsHtml();
+  const completePage = `<!DOCTYPE html>\n${template.documentElement.outerHTML}`
 
-  const file = new File([template.documentElement.outerHTML], "fileName", { type: "text/html" });
+  const file = new File([completePage], "fileName", { type: "text/html" });
 
   const response = await skynet.upload(file)
   console.debug(response.skylink);
