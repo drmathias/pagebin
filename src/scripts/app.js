@@ -7,13 +7,14 @@ const notifier = new Notifier();
 const skynet = new SkynetClient("https://siasky.net");
 
 const editor = new Editor(notifier);
-editor.OnUploadFile(async file => {
-  return skynet.upload(file)
-    .then(response => {
-      console.debug(`Uploaded image at ${response.skylink}`)
-      return `https://siasky.net/${response.skylink}`;
-    });
-});
+/** Uploads images to Skynet instead of b64 - enable when Skynet supports caching */
+// editor.OnUploadFile(async file => {
+//   return skynet.upload(file)
+//     .then(response => {
+//       console.debug(`Uploaded image at ${response.skylink}`)
+//       return `https://siasky.net/${response.skylink}`;
+//     });
+// });
 
 const templatePage = `<!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,11 @@ const templatePage = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script async defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+      integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+      crossorigin="anonymous"></script>
   <style type="text/css">
     body {
       margin: 0;

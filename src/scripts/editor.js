@@ -7,6 +7,7 @@ export default class Editor {
         this.quill = new Quill('#editor', {
             debug: 'info',
             modules: {
+                formula: true,
                 toolbar: [
                     [{ header: [1, 2, false] }],
                     ['bold', 'italic', 'underline', 'strike'],
@@ -14,9 +15,14 @@ export default class Editor {
                     ['blockquote', 'code-block'],
                     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                     [{ 'indent': '-1' }, { 'indent': '+1' }, { 'align': [] }],
-                    ['image', 'link']
+                    ['link', 'image', 'formula']
                 ]
             },
+            formats: [
+                'bold', 'code', 'italic', 'link', 'strike', 'script', 'underline',
+                'blockquote', 'header', 'indent', 'list', 'align', 'code-block',
+                'formula', 'image', 'video'
+            ],
             readOnly: false,
             theme: 'snow'
         });
