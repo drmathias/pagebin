@@ -26,11 +26,17 @@ export default class Editor {
             readOnly: false,
             theme: 'snow'
         });
-        this.quill.root.innerHTML = "<h1>The Sky is the Limit</h1><p><br></p><p><img src=\"https://siasky.net/MABR5PZITLGyEOJnLxEKtHpsHssZJEtylIgxtlSfzb_snw\"></p><p><br></p><p>Create beautiful, shareable web pages in minutes. It's simple and it's free!</p><p><br></p><ol><li>Edit this page 📝</li><li>Select '<em>Publish</em>' 👉</li><li>Share the link! 📢</li></ol><p><br></p>"
+        //default theme
+        this.LoadTemplate("<h1>The Sky is the Limit</h1><p><br></p><p><img src=\"https://siasky.net/MABR5PZITLGyEOJnLxEKtHpsHssZJEtylIgxtlSfzb_snw\"></p><p><br></p><p>Create beautiful, shareable web pages in minutes. It's simple and it's free!</p><p><br></p><ol><li>Edit this page 📝</li><li>Select '<em>Publish</em>' 👉</li><li>Share the link! 📢</li></ol><p><br></p>");
     }
 
     GetContentAsHtml() {
         return this.quill.root.innerHTML;
+    }
+
+    LoadTemplate(template) {
+        console.debug(`Loading template: ${template}`);
+        this.quill.root.innerHTML = template;
     }
 
     OnUploadFile(uploadCallback) {
