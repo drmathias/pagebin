@@ -1,9 +1,7 @@
 import Quill from "quill";
 
 export default class Editor {
-    constructor(notifier) {
-        this.notifier = notifier;
-
+    constructor() {
         this.quill = new Quill('#editor', {
             debug: 'info',
             modules: {
@@ -37,29 +35,5 @@ export default class Editor {
     LoadTemplate(template) {
         console.debug(`Loading template: ${template}`);
         this.quill.root.innerHTML = template;
-    }
-
-    OnUploadFile(uploadCallback) {
-        this.quill.getModule('toolbar').addHandler('image', () => {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-            input.click();
-
-            input.onchange = async () => {
-                const file = input.files[0];
-                if (/^image\//.test(file.type)) {
-                    await this.notifier.asyncBlock(
-                        uploadCallback(file).then(source => {
-                            const range = this.quill.getSelection();
-                            this.quill.insertEmbed(range.index, 'image', source);
-                        }),
-                        "Image has been uploaded",
-                        "Uploading image");
-                } else {
-                    console.warn('Only images can be uploaded');
-                }
-            };
-        });
     }
 }
