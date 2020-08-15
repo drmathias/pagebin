@@ -1,38 +1,22 @@
-import { SkynetClient } from "skynet-js";
-import Editor from "./editor";
+import { SkynetClient } from 'skynet-js';
+import Editor from './editor';
 
-const skynet = new SkynetClient("https://siasky.net");
+const skynet = new SkynetClient('https://siasky.net');
 const editor = new Editor();
-
-document.getElementById("publish").onclick = async () => {
-  const documentLocation = await uploadDocument();
-  if (documentLocation) { window.location.href = documentLocation; }
-};
 
 function MutualPromise(promise) {
   let running = false;
   const execute = async () => {
+    let response = null;
     if (!running) {
       running = true;
-      const response = await promise();
+      response = await promise();
       running = false;
-      return response;
     }
+    return response;
   };
   return execute;
 }
-
-const uploadDocument = new MutualPromise(async () => {
-  let template = new DOMParser().parseFromString(templatePage, "text/html");
-  template.getElementById("editor").firstElementChild.innerHTML = editor.GetContentAsHtml();
-  const completePage = `<!DOCTYPE html>\n${template.documentElement.outerHTML}`
-
-  const file = new File([completePage], "fileName", { type: "text/html" });
-
-  const response = await skynet.upload(file)
-  console.debug(response.skylink);
-  return `https://siasky.net/${response.skylink}`;
-});
 
 const templatePage = `<!DOCTYPE html>
   <html lang="en">
@@ -77,3 +61,19 @@ const templatePage = `<!DOCTYPE html>
   </body>
   
   </html>`;
+
+const uploadDocument = new MutualPromise(async () => {
+  const template = new DOMParser().parseFromString(templatePage, 'text/html');
+  template.getElementById('editor').firstElementChild.innerHTML = editor.GetContentAsHtml();
+  const completePage = `<!DOCTYPE html>\n${template.documentElement.outerHTML}`;
+
+  const file = new File([completePage], 'fileName', { type: 'text/html' });
+
+  const response = await skynet.upload(file);
+  return `https://siasky.net/${response.skylink}`;
+});
+
+document.getElementById('publish').onclick = async () => {
+  const documentLocation = await uploadDocument();
+  if (documentLocation) { window.location.href = documentLocation; }
+};
