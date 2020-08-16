@@ -1,6 +1,8 @@
-import { SkynetClient } from 'skynet-js';
+import { SkynetClient, parseSkylink } from 'skynet-js';
+import MicroModal from 'micromodal';
 import Editor from './editor';
 
+MicroModal.init();
 const skynet = new SkynetClient('https://siasky.net');
 const editor = new Editor();
 
@@ -76,3 +78,30 @@ document.getElementById('publish').onclick = async () => {
   const documentLocation = await uploadDocument();
   if (documentLocation) { window.location.href = documentLocation; }
 };
+
+document.getElementById('template-apply-btn').onclick = async () => {
+  const searchUrl = document.getElementById('template-url').value;
+  try {
+    const skylink = `https://siasky.net/${parseSkylink(searchUrl)}`;
+    document.getElementById('template-url').style.outline = '1px solid var(--green-primary)';
+    await fetch(skylink)
+      .then((response) => response.text())
+      .then((pageTemplate) => {
+        const templateDocument = new DOMParser().parseFromString(pageTemplate, 'text/html');
+        const template = templateDocument.getElementById('editor').firstElementChild.innerHTML;
+        editor.LoadTemplate(template);
+        MicroModal.close('template-drawer');
+      });
+  } catch (e) {
+    document.getElementById('template-url').style.outline = '1px solid var(--red-primary)';
+  }
+};
+
+const templateButtons = document.getElementsByClassName('template-item');
+Array.from(templateButtons).forEach((element) => {
+  const templateButton = element;
+  templateButton.onclick = () => {
+    const templateInput = document.getElementById('template-url');
+    templateInput.value = `sia://${templateButton.dataset.skylink}`;
+  };
+});

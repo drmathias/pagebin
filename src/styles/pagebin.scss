@@ -1,6 +1,21 @@
 /** Styling specific to pagebin editor **/
+
+:root {
+    --green-primary: #1ed660;
+    --red-primary: #f12626;
+    --grey-primary: #7f8c8d;
+    --grey-darkest: #202323;
+    --grey-light: #ecf1f1;
+    --grey-lightest: #f7f9f8;
+}
+
 body {
-    font-family: Helvetica, Arial, sans-serif
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--grey-darkest);
+}
+
+a {
+    outline: 0;
 }
 
 button {
@@ -9,8 +24,8 @@ button {
     padding: 0;
     margin: 0;
     text-decoration: none;
-    background: #1ed660;
-    color: #ecf1f1;
+    background: var(--green-primary);
+    color: var(--grey-lightest);
     font-family: sans-serif;
     font-size: 1rem;
     cursor: pointer;
@@ -24,8 +39,8 @@ button {
 
 button:hover,
 button:focus {
-    background: #7f8c8d;
-    color: #f7f9f8;
+    background: var(--grey-primary);
+    color: var(--grey-lightest)
 }
 
 button:active {
@@ -34,8 +49,11 @@ button:active {
 
 header {
     display: flex;
-    padding: 1rem 2rem 0 2rem;
     align-items: center;
+}
+
+header.menu-bar {
+    padding: 1rem 2rem 0 2rem;
 }
 
 .logo {
@@ -53,7 +71,8 @@ header {
     height: 16px;
 }
 
-.menu {
+.menu,
+.predefined-templates {
     flex: 1;
     display: flex;
     align-self: flex-end;
@@ -63,20 +82,23 @@ header {
     margin: 0 -4px;
 }
 
-.menu > li {
+.menu > li,
+.predefined-templates > li {
     margin: 0 4px;
 }
 
 .menu button,
-.menu a {
+.menu a,
+.predefined-templates button {
     display: inline-block;
     padding: 4px 6px;
     border-radius: 5px;
     border: 0;
-    background-color: #fff;
+    background-color: white;
+    color: var(--grey-darkest);
     text-decoration: none;
-    color: #000;
     cursor: pointer;
+    font-size: 13px;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;
 }
@@ -84,19 +106,114 @@ header {
 .menu button:focus,
 .menu button:hover,
 .menu a:focus,
+.menu a:hover,
+.predefined-templates button:focus,
+.predefined-templates button:hover {
+    background-color: var(--grey-light);
+}
+
+.menu a:focus,
 .menu a:hover {
-    background-color: #eee;
+    text-decoration: underline;
 }
 
 .menu button:active,
-.menu a:active {
+.menu a:active,
+.predefined-templates button:active {
     transform: scale(0.95);
+}
+
+.predefined-templates {
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    font-size: 14px;
+    color: var(--grey-lightest);
+    padding: 8px 12px;
 }
 
 #publish {
     border-radius: 25px;
-    border-style: none;
-    font-size: 14px;
-    color: #fff;
-    padding: 8px 12px;
 }
+
+.modal {
+    display: none;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+  
+  .modal__container {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 500px;
+    max-height: 100vh;
+    border-radius: 4px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .modal__header {
+    justify-content: space-between;
+  }
+  
+  .modal__title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: #202323;
+    box-sizing: border-box;
+  }
+  
+  .modal__close {
+    background: transparent;
+    border: 0;
+    color: var(--grey-darkest);
+  }
+
+  .modal__close:hover {
+      background: none;
+      color: var(--grey-darkest);
+  }
+  
+  .modal__header .modal__close:before { content: "\2715"; }
+  
+  .modal__content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    color: rgba(0,0,0,.8);
+  }
+
+  input {
+      border: 1px solid var(--grey-light);
+      font-size: 13px;
+      height: 26px;
+      width: 100%;
+      padding: 3px 5px;
+      box-sizing: border-box;
+  }
+
+  .input-group {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      align-items: flex-end;
+  }

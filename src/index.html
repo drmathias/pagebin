@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="menu-bar">
         <div class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"
                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"
@@ -31,16 +31,56 @@
             <span>pagebin</span>
         </div>
         <ul class="options menu">
+            <li><button data-micromodal-trigger="template-drawer">Templates</button></li>
             <li>
-                <a href="https://siasky.net/AACiP9ptrr4Fh4FeG61c5j9zi4HHr6LZ4tm2bwPGcfUWVw/" target="_blank">Help</a>
+                <a href="https://siasky.net/AABUDnuhn_omLqLSe4FUXLWaqEevvfMDaAd1lkBsNigDJw/" target="_blank">Help</a>
             </li>
         </ul>
         <div class="publishing">
-            <button id="publish">Publish</button>
+            <button id="publish" class="btn-primary">Publish</button>
         </div>
     </header>
     <div class="container">
         <div id="editor">
+        </div>
+    </div>
+
+    <div id="template-drawer" class="modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 id="template-drawer-title" class="modal__title">
+                        Templates
+                    </h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <div class="modal__content" id="template_drawer-content">
+                    <p>Load a template from a pagebin</p>
+                    <div class="input-group">
+                        <input id="template-url" type="url" />
+                        <button id="template-apply-btn" class="btn-primary">Apply</button>
+                    </div>
+                    <p>Or pick from a selection of bundled templates</p>
+                    <ul class="predefined-templates">
+                        <li>
+                            <button class="template-item"
+                                data-skylink="AADZ9TcU781uvhkomSpFLdOgDM7hpqbNxCaEwY1LjM9Y5Q">Resume</button>
+                        </li>
+                        <li>
+                            <button class="template-item"
+                                data-skylink="fAbiXa4k-C9oR0p40SZv3HtH-OLr3GjxmVJsYo9FRuriGQ">Newsletter</button>
+                        </li>
+                        <li>
+                            <button class="template-item"
+                                data-skylink="vAC_i1xbHMK5cSqXiwr1D75qol7yFzTD1ZTSx1t_Jno7JQ">Recipe</button>
+                        </li>
+                        <li>
+                            <button class="template-item"
+                                data-skylink="AAD3D3DSQK1Hdg8s9QYVq4pZQem6axhmeOvV4IjO9yc9Ng">Release notes</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
